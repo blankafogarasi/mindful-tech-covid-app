@@ -13,7 +13,7 @@ const PieChart = ({statData}) => {
   const COLORS = ['#ab9ede', '#f1c66a', '#cb93cf'];
   const proccessPieChartData = (statData) => {
     return Object.entries(
-        groupBy(statData.map((stat) => ({name: stat.last_updated.slice(0, 4), value: stat.tested})), 'name'))
+        groupBy(statData.map((stat) => ({name: stat.updated.slice(0, 4), value: stat.tested})), 'name'))
         .map((groupedStat) => {
           return {
             name: groupedStat[0],
@@ -39,25 +39,25 @@ const PieChart = ({statData}) => {
   const pieChartData = proccessPieChartData(statData);
 
   return (
-      <ResponsiveContainer width="99%" height={500}>
-        <PieRechart>
-          <Legend wrapperStyle={{ position: 'relative' }} />
-          <Pie
-            data={pieChartData}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={200}
-            fill="#8884d8"
-            dataKey="tested"
-          >
-            {pieChartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-        </PieRechart>
-      </ResponsiveContainer>
+    <ResponsiveContainer width="99%" height={500}>
+      <PieRechart>
+        <Legend wrapperStyle={{position: 'relative'}} />
+        <Pie
+          data={pieChartData}
+          cx="50%"
+          cy="50%"
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={200}
+          fill="#8884d8"
+          dataKey="tested"
+        >
+          {pieChartData.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+      </PieRechart>
+    </ResponsiveContainer>
   );
 };
 

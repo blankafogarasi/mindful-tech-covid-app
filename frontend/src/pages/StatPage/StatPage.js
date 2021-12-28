@@ -38,11 +38,11 @@ const StatPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await fetch(`http://localhost:8080/stats/stats`);
+        const response = await fetch(process.env.REACT_APP_API_URL);
         const statData = await response.json();
         if (statData) {
           setStatData(statData.map((stat) => {
-            return {...stat, last_updated: stat.last_updated.slice(0, 7)};
+            return {...stat, updated: stat.updated.slice(0, 7)};
           }));
         } else {
           setError('The data is not valid received from the API');
@@ -63,10 +63,10 @@ const StatPage = () => {
   return (
     <Grid container direction="column" spacing={5} style={{marginTop: '20px'}}>
       {loading &&
-        <CircularProgress style={{margin: "auto"}}/>
+        <CircularProgress style={{margin: 'auto'}}/>
       }
       {!loading && error &&
-            <Alert style={{margin: "0 20px"}} severity="error">{error}</Alert>
+            <Alert style={{margin: '0 20px'}} severity="error">{error}</Alert>
       }
       {!loading && !error &&
             <>

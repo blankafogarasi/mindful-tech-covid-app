@@ -1,7 +1,6 @@
-import {Stat} from "./stat";
-
 export interface StatResponse {
     infected: number,
+    activeInfected: number,
     deceased: number,
     recovered: number,
     quarantined: number,

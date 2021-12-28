@@ -1,0 +1,14 @@
+{
+  "name": "mindful-tech-covid-app",
+  "license": "MIT",
+  "engines": {
+    "node": "17.3.0",
+    "yarn": "1.22.17"
+  },
+  "scripts": {
+    "start": "yarn --cwd backend install && yarn --cwd backend start",
+    "build": "yarn --cwd frontend install && yarn --cwd frontend build",
+    "deploy": "cp -a frontend/build/. public/",
+    "heroku-postbuild": "yarn build && yarn deploy && yarn start"
+  }
+}
